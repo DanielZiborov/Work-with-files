@@ -2,9 +2,17 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart' as PathProvider;
 
+// PathProvider.getApplicationSupportDirectory();
+// PathProvider.getTemporaryDirectory();
+// PathProvider.getLibraryDirectory();
 class ExampleWidgetModel extends ChangeNotifier {
   void readFile() async {
-    
+    final directory = await PathProvider.getApplicationDocumentsDirectory();
+    final filePath = '${directory.path}/my_file';
+    final file = File(filePath);
+    await file.writeAsString('Data');
+    final isExists = await file.exists();
+    print(isExists);
   }
 }
 
