@@ -4,22 +4,22 @@ class ExampleWidgetModel extends ChangeNotifier {
   void readFile() async {}
 }
 
-class ExampleModelProvider extends InheritedNotifier {
+class ExampleWidgetModelProvider extends InheritedNotifier {
   final ExampleWidgetModel model;
-  const ExampleModelProvider({
+  const ExampleWidgetModelProvider({
     super.key,
     required this.model,
     required super.child,
   }) : super(notifier: model);
 
-  static ExampleModelProvider? watch(BuildContext context) {
-    return context.dependOnInheritedWidgetOfExactType<ExampleModelProvider>();
+  static ExampleWidgetModelProvider? watch(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<ExampleWidgetModelProvider>();
   }
 
-  static ExampleModelProvider? read(BuildContext context) {
+  static ExampleWidgetModelProvider? read(BuildContext context) {
     final widget = context
-        .getElementForInheritedWidgetOfExactType<ExampleModelProvider>()
+        .getElementForInheritedWidgetOfExactType<ExampleWidgetModelProvider>()
         ?.widget;
-    return widget is ExampleModelProvider ? widget : null;
+    return widget is ExampleWidgetModelProvider ? widget : null;
   }
 }
