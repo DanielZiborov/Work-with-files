@@ -14,7 +14,7 @@ class ExampleWidgetModel extends ChangeNotifier {
     if (!isExist) {
       await file.create();
     }
-    final result = await file.readAsString();
+    final result = await file.readAsBytes();
     print(result);
   }
 }
