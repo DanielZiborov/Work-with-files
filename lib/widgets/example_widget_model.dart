@@ -11,9 +11,8 @@ class ExampleWidgetModel extends ChangeNotifier {
     final directory = await PathProvider.getApplicationDocumentsDirectory();
     final filePath = '${directory.path}/my_file';
     final file = File(filePath);
-    await file.writeAsString('Data');
-    final isExists = await file.exists();
-    print(isExists);
+    final result = await file.readAsString();
+    print(result);
   }
 }
 

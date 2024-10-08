@@ -15,6 +15,7 @@ class _ExampleWidgetState extends State<ExampleWidget> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("example"),
+        centerTitle: true,
       ),
       body: SafeArea(
         child: Center(
