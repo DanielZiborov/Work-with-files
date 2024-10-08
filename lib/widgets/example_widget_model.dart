@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart' as PathProvider;
 
-
 // PathProvider.getApplicationSupportDirectory();
 // PathProvider.getTemporaryDirectory();
 // PathProvider.getLibraryDirectory();
@@ -11,6 +10,10 @@ class ExampleWidgetModel extends ChangeNotifier {
     final directory = await PathProvider.getApplicationDocumentsDirectory();
     final filePath = '${directory.path}/my_file';
     final file = File(filePath);
+    final isExist = await file.exists();
+    if (!isExist) {
+      await file.create();
+    }
     final result = await file.readAsString();
     print(result);
   }
@@ -25,7 +28,8 @@ class ExampleWidgetModelProvider extends InheritedNotifier {
   }) : super(notifier: model);
 
   static ExampleWidgetModelProvider? watch(BuildContext context) {
-    return context.dependOnInheritedWidgetOfExactType<ExampleWidgetModelProvider>();
+    return context
+        .dependOnInheritedWidgetOfExactType<ExampleWidgetModelProvider>();
   }
 
   static ExampleWidgetModelProvider? read(BuildContext context) {
